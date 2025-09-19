@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  vote:
+    image: hmurafique/vote:latest
+    ports:
+      - "5000:3000"
+    depends_on:
+      - redis
+
+  result:
+    image: hmurafique/result:latest
+    ports:
+      - "5001:4000"
+    depends_on:
+      - db
+
+  worker:
+    image: hmurafique/worker:latest
+    depends_on:
+      - redis
+      - db
+
+  redis:
+    image: redis:6-alpine
+
+  db:
+    image: postgres:13-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: votes
