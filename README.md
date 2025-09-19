@@ -70,7 +70,7 @@ docker service scale voting-app_vote=3
 
 ---
 
-### ✅ Cleaup
+### ✅ Clenup
 ```bash
 docker stack rm voting-app
 docker swarm leave --force
